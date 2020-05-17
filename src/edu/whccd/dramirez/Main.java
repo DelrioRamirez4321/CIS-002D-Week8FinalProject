@@ -2,6 +2,7 @@ package edu.whccd.dramirez;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /*
 The purpose of this program is to be able to show the use of all the information that we have learn
@@ -15,99 +16,125 @@ public class Main {
 
         Scanner sc1 = new Scanner(System.in);
         System.out.print("Enter first Name: ");
-        String firstName = sc1.nextLine();
+        String name = sc1.nextLine();
 
-        Scanner sc2 = new Scanner(System.in);
         System.out.print("Enter Last Name: ");
-        String lastName = sc2.nextLine();
+        String lastName = sc1.nextLine();
 
-        Scanner sc3 = new Scanner(System.in);
         System.out.print("Enter your gender (M,F,O): ");
-        String gender = sc3.nextLine();
-        switch (gender){
-            case "M":
-                gender = "Male";
-                break;
-            case "F":
-                gender = "Female";
-                break;
-            case "O":
-                gender = "other";
-                break;
-            default:
-                System.out.println("unknown character");
-        }
+        String gender = sc1.nextLine().toUpperCase();
 
-        int birthYear = 0;
-        while (birthYear == 0) {
-            System.out.print("Enter birth year: ");
-            Scanner sc4 = new Scanner(System.in);
-            if (sc4.hasNextInt()) {
-                birthYear = sc4.nextInt();
-            } else if (sc4.hasNextLine()) {
-                System.out.println("Error! Please enter Valid year");
-                sc4.next();
-            }
-        }
+//        boolean isValid = true;
+//        while (isValid = false) {
+//            System.out.print("Enter your gender (M,F,O): ");
+//            String gender = sc1.nextLine().toUpperCase();
+//            if (!gender.equals("M") || !gender.equals("F") || !gender.equals("O")){
+//                System.out.println("Please enter an option provided(M,F, or O");
+//                gender = sc1.next();
+//            } else {
+//                gender = sc1.nextLine();
+//            }
+//            switch (gender){
+//                case "M":
+//                    gender = "Male";
+//                    break;
+//                case "F":
+//                    gender = "Female";
+//                    break;
+//                case "O":
+//                    gender = "other";
+//                    break;
+//            }
+//            System.out.print(gender);
+//            isValid = true;
+//        }
 
+
+
+        int age = (LocalDateTime.now().getYear()) - birthYear();
+
+
+        ArrayList<String> answers = new ArrayList <>();
 
         Scanner sc5 = new Scanner(System.in);
         System.out.print("What state are are living in (U.S.A): ");
-        String State = "State Living in: " + sc5.nextLine();
+        String state = "State Living in: " + sc5.nextLine();
+        answers.add(state);
 
-        Scanner sc10 = new Scanner(System.in);
         System.out.print("how tall are you: ");
-        String height = "Heigth: " + sc10.nextLine();
+        String height = "Heigth: " + sc5.nextLine();
+        answers.add(height);
 
-        Scanner sc6 = new Scanner(System.in);
         System.out.print("What are your intrests : ");
-        String intrest = "Intrests: " + sc6.nextLine();
+        String intrest = "Intrests: " + sc5.nextLine();
+        answers.add(intrest);
 
-        Scanner sc7 = new Scanner(System.in);
         System.out.print("What is your Favorite Food: ");
-        String food = "Favorite Food: " + sc7.nextLine();
+        String food = "Favorite Food: " + sc5.nextLine();
+        answers.add(food);
 
-        Scanner sc8 = new Scanner(System.in);
         System.out.print("What is your Favorite type of music: ");
-        String music = "Favorite Music: " + sc8.nextLine();
+        String music = "Favorite Music: " + sc5.nextLine();
+        answers.add(music);
 
         Scanner sc9 = new Scanner(System.in);
         System.out.print("What is your Favorite Sport: ");
         String sports = "Favorite Sport: " + sc9.nextLine();
+        answers.add(sports);
 
-        Scanner sc11 = new Scanner(System.in);
         System.out.print("What is your favotie soda: ");
-        String soda = "Favorite soda: " + sc11.nextLine();
+        String soda = "Favorite soda: " + sc5.nextLine();
+        answers.add(soda);
 
-        Scanner sc12 = new Scanner(System.in);
         System.out.print("What is your favotie TV show: ");
-        String tvShow = "Favorite TV Show: " + sc12.nextLine();
+        String tvShow = "Favorite TV Show: " + sc5.nextLine();
+        answers.add(tvShow);
 
-        Scanner sc13 = new Scanner(System.in);
         System.out.print("What is your favotie movie: ");
-        String movie = "Favorite Movie: " + sc13.nextLine();
+        String movie = "Favorite Movie: " + sc5.nextLine();
+        answers.add(movie);
 
-        Scanner sc14 = new Scanner(System.in);
         System.out.print("What is your favorite place to visit: ");
-        String place = "Favorite soda: " + sc14.nextLine();
+        String place = "Favorite soda: " + sc5.nextLine();
+        answers.add(place);
 
         System.out.println();
 
-        System.out.println("Full Name: " + firstName + " " + lastName);
-        System.out.println("Age: " + age(birthYear));
+        summary(name, lastName,age, gender, answers);
+
+    }
+
+    public static String gender() {
+
+
+    }
+
+    public static int birthYear() {
+        int birthYear = 0;
+        while (birthYear == 0) {
+            Scanner sc4 = new Scanner(System.in);
+            System.out.print("Enter birth year: ");
+            // TODO: Great use of hasNextInt(). Consider converting this if-else statement to a try-catch block
+            try {
+                birthYear = sc4.nextInt();
+            } catch (Exception e) {
+                System.out.println("Error! Please enter Valid year");
+                sc4.next();
+            }
+        }
+        return birthYear;
+    }
+
+    public static void summary(String firstname, String lastname, Integer age, String gender, ArrayList questions){
+        System.out.println("Full Name: " + firstname + " " + lastname);
+        System.out.println("Age: " + age);
         System.out.println("Gender: " + gender);
 
         System.out.println();
         System.out.println("*****************************************");
 
-        String[] answers = {State,height, intrest, food, music,sports,soda,tvShow,movie,place};
-        for (String answer : answers) {
-            System.out.println(answer);
+        for (Object question : questions) {
+            System.out.println(question);
         }
-    }
-
-    public static int age(int birthYear) {
-        int currentYear = LocalDateTime.now().getYear();
-        return currentYear - birthYear;
     }
 }
