@@ -16,43 +16,26 @@ public class Main {
 
         Scanner sc1 = new Scanner(System.in);
         System.out.print("Enter first Name: ");
-        String name = sc1.nextLine();
+        String firstName = sc1.nextLine();
 
         System.out.print("Enter Last Name: ");
         String lastName = sc1.nextLine();
 
-        System.out.print("Enter your gender (M,F,O): ");
+        System.out.print("Enter your gender: ");
         String gender = sc1.nextLine().toUpperCase();
-
-//        boolean isValid = true;
-//        while (isValid = false) {
-//            System.out.print("Enter your gender (M,F,O): ");
-//            String gender = sc1.nextLine().toUpperCase();
-//            if (!gender.equals("M") || !gender.equals("F") || !gender.equals("O")){
-//                System.out.println("Please enter an option provided(M,F, or O");
-//                gender = sc1.next();
-//            } else {
-//                gender = sc1.nextLine();
-//            }
-//            switch (gender){
-//                case "M":
-//                    gender = "Male";
-//                    break;
-//                case "F":
-//                    gender = "Female";
-//                    break;
-//                case "O":
-//                    gender = "other";
-//                    break;
-//            }
-//            System.out.print(gender);
-//            isValid = true;
-//        }
-
-
+        switch(gender){
+            case "M":
+                gender = "Male";
+                break;
+            case "F":
+                gender = "Female";
+                break;
+            default:
+                gender = "Other";
+                break;
+        }
 
         int age = (LocalDateTime.now().getYear()) - birthYear();
-
 
         ArrayList<String> answers = new ArrayList <>();
 
@@ -100,13 +83,7 @@ public class Main {
 
         System.out.println();
 
-        summary(name, lastName,age, gender, answers);
-
-    }
-
-    public static String gender() {
-
-
+        summary(firstName, lastName,age,gender,answers);
     }
 
     public static int birthYear() {
@@ -114,7 +91,6 @@ public class Main {
         while (birthYear == 0) {
             Scanner sc4 = new Scanner(System.in);
             System.out.print("Enter birth year: ");
-            // TODO: Great use of hasNextInt(). Consider converting this if-else statement to a try-catch block
             try {
                 birthYear = sc4.nextInt();
             } catch (Exception e) {
